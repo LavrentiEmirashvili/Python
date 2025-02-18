@@ -18,17 +18,17 @@ def check():
     
 
     for i in range(length):
-        if guess in guesses:
-            print('You have already guessed this letter')
-            check()
-            break
+        # if guess in guesses:
+        #     print('You have already guessed this letter')
+        #     check()
+        #     break
         if guess == chosen_word[i]:
             word[i] = guess
             correct_guess = True
     guesses.append(guess)
     return correct_guess  
     
-
+#NEEDS TO BE FIXED
    
 while not end_of_game:
     if check():
