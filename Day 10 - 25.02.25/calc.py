@@ -39,7 +39,10 @@ while continueCalc == "y":
     answer2 = operation(answer1, b)
     print(f"{answer1} {operationChoice} {b} = {answer2}")
     continueCalc = input(f"Type 'y' to continue calculating with {answer2}, or type 'n' to exit.:")
+#Implement continueCalc == "n" for calculating on a new number
 
+
+    
 # def operate(num1,operation,num2):
 #     if operation == "+":
 #         answer = num1 + num2 
