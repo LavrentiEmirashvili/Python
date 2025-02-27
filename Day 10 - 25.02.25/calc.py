@@ -16,33 +16,37 @@ operations = {
     "*": multiplication,
     "/": division
 }
-a = int(input("What's the first number?:"))
-for i in operations:
-    print(i)
-operationChoice = input("Pick an operation:")
-b = int(input("What's the next number?:"))
-
-# for i in operations:
-#     if operationChoice == i:
-#         answer = operations[i](a,b)
-
-operation = operations[operationChoice]
-answer1 = operation(a,b)
-
-print(f"{a} {operationChoice} {b} = {answer1}")
-
-continueCalc = input(f"Type 'y' to continue calculating with {answer1}, or type 'n' to exit.:")
-while continueCalc == "y":
-    operationChoice = input("Pick an operation:")
-    operation = operations[operationChoice]
-    b = int(input("What's the next number?:"))
-    answer2 = operation(answer1, b)
-    print(f"{answer1} {operationChoice} {b} = {answer2}")
-    continueCalc = input(f"Type 'y' to continue calculating with {answer2}, or type 'n' to exit.:")
-#Implement continueCalc == "n" for calculating on a new number
+def calculate():
+    a = int(input("What's the first number?:"))
+    for i in operations:
+        print(i)
 
 
-    
+    # for i in operations:
+    #     if operationChoice == i:
+    #         answer = operations[i](a,b)
+
+
+    should_continue = True
+    while should_continue:
+        operationChoice = input("Pick an operation:")
+        operation = operations[operationChoice]
+        b = int(input("What's the next number?:"))
+        answer = operation(a, b)
+        print(f"{a} {operationChoice} {b} = {answer}")
+        if input(f"Type 'y' to continue calculating with {answer}, or type 'n' to exit.:") == "y":
+            a = answer
+        else:
+            should_continue = False    
+            calculate()
+
+calculate()
+
+
+
+
+# ignore
+
 # def operate(num1,operation,num2):
 #     if operation == "+":
 #         answer = num1 + num2 
