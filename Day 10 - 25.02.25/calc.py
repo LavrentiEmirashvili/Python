@@ -1,6 +1,6 @@
 from art import logo
 import os
-print(logo)
+
 def addition(a,b):
     return  a + b
 def substraction(a,b):
@@ -17,6 +17,8 @@ operations = {
     "/": division
 }
 def calculate():
+    os.system("cls")
+    print(logo)
     a = int(input("What's the first number?:"))
     for i in operations:
         print(i)
