@@ -24,10 +24,77 @@ cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 #Then try out the completed Blackjack project here: 
 #   https://appbrewery.github.io/python-day11-demo/
 import random 
+import os
 from art import logo
-print(logo)
 
-def draw_cards():
-    cardDrawn = random.choice(cards)
-    print(cardDrawn) 
-draw_cards()
+play = "y"
+while play == "y":
+    os.system("cls")
+    print(logo)
+
+    userScore = 0
+    dealerScore = 0
+
+    userHand = []
+    dealerHand = []
+
+    def draw_card(player):
+        global userScore, dealerScore
+        if player == "user":
+            drawnCard = random.choice(cards)
+            userHand.append(drawnCard)
+            if userScore > 10 and drawnCard == 11:
+                userScore += 1
+            else:
+                userScore += drawnCard
+        elif player == "dealer":
+            drawnCard = random.choice(cards)
+            dealerHand.append(drawnCard)
+            if dealerScore > 10 and drawnCard == 11:
+                dealerScore += 1
+            else:
+                dealerScore += drawnCard
+
+    draw_card("user")
+    draw_card("user")
+
+    draw_card("dealer")
+    draw_card("dealer")
+
+    print(f"Your cards: {userHand}, current score: {userScore}\nComputer's first card: {dealerHand[0]}")
+
+    if userScore == 21:
+        print("BlackJack!!! You win")
+    elif dealerScore == 21:
+        print("Dealer drew BlackJack. You lose")
+        break
+
+    drawAnother = input("Type 'y' to get another card, type 'n' to pass: ")
+
+    while drawAnother == "y":
+        draw_card("user")
+        print(f"Your cards: {userHand}, current score: {userScore}\nComputer's first card: {dealerHand[0]}")
+
+        if userScore < 21 :
+            drawAnother = input("Type 'y' to get another card, type 'n' to pass: ")
+        else:
+            break
+    while dealerScore < 17 or (dealerScore == 17 and 11 in dealerHand):
+        draw_card("dealer")
+
+    print(f"Your final hand: {userHand}, final score: {userScore}\nComputer's final hand: {dealerHand}, final score: {dealerScore}")
+
+
+    if userScore > 21:
+        print("You went over. You lose  😭")
+    elif dealerScore > 21:
+        print("Dealer went over 21, You Win!")
+    elif userScore > dealerScore:
+        print("You Win!")
+    elif userScore == dealerScore:
+        print("Its a Draw!")
+    else:
+        print("You lose.")
+    play = input("Do you want to play another game of BlackJack? Type 'y' or 'n':")
+
+

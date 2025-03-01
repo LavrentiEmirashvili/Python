@@ -5,6 +5,7 @@ def run():
     direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
     text = input("Type your message:\n").lower()
     shift = int(input("Type the shift number:\n"))
+    shift = shift % 26
     text = list(text)
     if direction == "encode":
         encrypt(text, shift)
@@ -21,11 +22,14 @@ def encrypt(text, shift):
         if text[i] not in alphabet:
             text[i] = text[i]
         else:
-            text[i] = alphabet[alphabet.index(text[i])+ shift % len(alphabet) - len(alphabet)]
+            text[i] = alphabet[alphabet.index(text[i])+ shift  - len(alphabet)]
     print("".join(text))
 def decrypt(text, shift):
     for i in range (0,len(text)):
-        text[i] = alphabet[alphabet.index(text[i])- shift % len(alphabet) - len(alphabet)]
+        if text[i] not in alphabet:
+            text[i] = text[i]
+        else:
+            text[i] = alphabet[alphabet.index(text[i])- shift  - len(alphabet)]
     print("".join(text))
 
 def reset():

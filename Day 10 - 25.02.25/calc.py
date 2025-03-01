@@ -19,7 +19,7 @@ operations = {
 def calculate():
     os.system("cls")
     print(logo)
-    a = int(input("What's the first number?:"))
+    a = float(input("What's the first number?:"))
     for i in operations:
         print(i)
 
@@ -33,7 +33,7 @@ def calculate():
     while should_continue:
         operationChoice = input("Pick an operation:")
         operation = operations[operationChoice]
-        b = int(input("What's the next number?:"))
+        b = float(input("What's the next number?:"))
         answer = operation(a, b)
         print(f"{a} {operationChoice} {b} = {answer}")
         if input(f"Type 'y' to continue calculating with {answer}, or type 'n' to exit.:") == "y":
