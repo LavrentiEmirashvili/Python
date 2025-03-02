@@ -65,9 +65,13 @@ while play == "y":
 
     if userScore == 21:
         print("BlackJack!!! You win")
+        play = input("Do you want to play another game of BlackJack? Type 'y' or 'n':")
+        continue
+        
     elif dealerScore == 21:
         print("Dealer drew BlackJack. You lose")
-        break
+        play = input("Do you want to play another game of BlackJack? Type 'y' or 'n':")
+        continue
 
     drawAnother = input("Type 'y' to get another card, type 'n' to pass: ")
 
